@@ -1,0 +1,108 @@
+body{
+    background-color: #121213;
+    padding: 0;
+    margin: 0;
+    font-family: 'Rockwell';
+    font-weight: 600;
+}
+.header{
+    display: flex;
+    background-color: inherit;
+    height: 65px;
+    border-bottom: 1px solid #3a3a3c;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+.header h1{
+    font-size: 40px;
+}
+.main-body{
+    display: flex;
+    justify-content: center;
+}
+.grid{
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 5px;
+    width: 300px;
+    height: 360px;
+    margin: 20px;
+}
+.rows{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
+    width: 280px;
+    height: 52.5px;
+}
+.colums {
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center-50px;
+    width: 52px;
+    height: 52px;
+    background-color: #121213;
+    border: 2px solid #3a3a3c;
+    border-radius: 1px;
+    font-size: 28px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 52px
+}
+@keyframes pop {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+    
+      40% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+}
+.poppable {
+    animation: pop 200ms;
+}
+.keyboard {
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    grid-gap: 8px;
+    justify-content: center;
+}
+.keyboard-row{
+    justify-items: center;
+    display:flex;
+    height: 58px;
+}
+
+.key-button{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    background-color: #818384;
+    border-radius: 3px;
+    border: 0px;
+    font-size:12px;
+    font-weight: bold;
+    width: 43px;
+    height: 58px;
+    padding: 0;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.key-button:hover{
+    cursor: pointer;
+}
+
+.black-space{
+    width: 25.5px;
+    height: 58px;
+}
+.key-enter{
+    width: 69.5px;
+}
+.key-delete{
+    width: 69.5px;
+}
