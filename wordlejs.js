@@ -6,9 +6,6 @@ let keyEnded = true, wordFound = false, sliderOpen = false, unMasked = false;
 let initAttempts = [];
 //load user data with an IIFE
 (function () {
-    let initID = localStorage.getItem('user_id');
-    //generate and set an ID for a new client
-    if (initID.length < 9) localStorage.setItem('user_id', generateUserID());
     //get previous user attempt data
     initAttempts = [localStorage.getItem('one_attempt'), localStorage.getItem('two_attempt'), localStorage.getItem('three_attempt'), localStorage.getItem('four_attempt'), localStorage.getItem('five_attempt'), localStorage.getItem('six_attempt')];
     //convert null values to 0
@@ -71,15 +68,6 @@ function getMaxAttempts() {
     let max = initAttempts[0];
     for (let i = 0; i < initAttempts.length; i++) if (initAttempts[i] > max) max = initAttempts[i];
     return max;
-}
-function generateUserID() {
-    const validChars = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'y', 'z'];
-    let result = "";
-    for (let i = 0; i < 9; i++) {
-        const num = Math.floor(Math.random() * validChars.length);
-        result += validChars[num];
-    }
-    return result;
 }
 keyboard.addEventListener('keydown', e => {
     if (!wordFound&&!unMasked) {
