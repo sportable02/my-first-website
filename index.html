@@ -9,103 +9,215 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Bakbak+One" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="wordleicon2.png">
-    <script src="wordlejs.js"></script>
+    <script defer src="wordlejs.js"></script>
     <title>Wordle - The North Yarmouth Times</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
 <body>
+    <div class="mask">
+        <div class="card help-popup">
+            <img class="help-close-icon" src="close.svg" alt="close" onclick="mask('.help-popup')">
+            <div class="help-body">
+                <h1>How To Play</h1>
+                <h4>Guess the Wordle in 6 tries</h4>
+                <ul style="margin: 0;padding: 0;">
+                    <li>Each guess must be a valid 5-letter word.</li>
+                    <li>The color of the tiles will change to show how close your guess was to the word</li>
+                </ul>
+                <h3>Examples</h3>
+                <div class="example">
+                    <div class="example-box correct-example-one">W</div>
+                    <div class="example-box correct-example-two">E</div>
+                    <div class="example-box correct-example-three">A</div>
+                    <div class="example-box correct-example-four">R</div>
+                    <div class="example-box correct-example-five">Y</div>
+                </div>
+                <h3>W is in the word and in the correct spot.</h3>
+                <div class="example">
+                    <div class="example-box almost-example-one">P</div>
+                    <div class="example-box almost-example-two">I</div>
+                    <div class="example-box almost-example-three">L</div>
+                    <div class="example-box almost-example-four">L</div>
+                    <div class="example-box almost-example-five">S</div>
+                </div>
+                <h3>I is in the word but in the wrong spot.</h3>
+                <div class="example">
+                    <div class="example-box absent-example-one">V</div>
+                    <div class="example-box absent-example-two">A</div>
+                    <div class="example-box absent-example-three">G</div>
+                    <div class="example-box absent-example-four">U</div>
+                    <div class="example-box absent-example-five">E</div>
+                </div>
+                <h3>U is not in the word in any spot.</h3>
+            </div>
+        </div>
+        <div class="card stats-popup">
+            <img class="stats-close-icon" src="close.svg" alt="close" onclick="mask('.stats-popup')">
+            <div class="stats-body">
+                <h1>STATISTICS</h1>
+                <div class="stat-grid">
+                    <div class="stat-grid-row stat-grid-one">
+                        <div class="stat play-stat"></div>
+                        <div class="stat win-stat"></div>
+                        <div class="stat str-stat">?</div>
+                        <div class="stat max-stat">?</div>
+                    </div>
+                    <div class="stat-grid-row stat-grid-two">
+                        <div class="stat-des play-des">Played</div>
+                        <div class="stat-des win-des">Win %</div>
+                        <div class="stat-des str-des">Current Streak</div>
+                        <div class="stat-des max-des">Max Streak</div>
+                    </div>
+                </div>
+                <h2>GUESS DISTRIBUTION</h2>
+                <div class="bars-container">
+                    <div class="bar-nums">
+                        <h1>1</h1>
+                        <h1>2</h1>
+                        <h1>3</h1>
+                        <h1>4</h1>
+                        <h1>5</h1>
+                        <h1>6</h1>
+                    </div>
+                    <div class="stat-bars">
+                        <div class="stat-bar bar-one"></div>
+                        <div class="stat-bar bar-two"></div>
+                        <div class="stat-bar bar-three"></div>
+                        <div class="stat-bar bar-four"></div>
+                        <div class="stat-bar bar-five"></div>
+                        <div class="stat-bar bar-six"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card settings-popup">
+            <img class="settings-close-icon" src="close.svg" alt="close" onclick="mask('.settings-popup')">
+            <div class="settings-header">
+                <h1>SETTINGS</h1>
+            </div>
+            <div class="mode-container dark-mode">
+                <h3>Dark Theme</h3>
+                <div class="binary-switch dark-switch" onclick="darkMode()">
+                    <div class="binary-switch-slider dark-switch-slider"></div>
+                </div>
+            </div>
+            <div class="mode-container high-contrast-mode">
+                <h3>High Contrast Mode</h3>
+                <div class="binary-switch contrast-switch" onclick="contrastMode()">
+                    <div class="binary-switch-slider contrast-switch-slider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="header">
+        <div class="left-icons">
+            <img class="menu-icon" src="menuicon.svg" alt="menu icon" onclick="animateSlider()">
+        </div>
         <h1>Wordle</h1>
+        <div class="right-icons">
+            <img class="help-icon" src="help.svg" alt="help" onclick="unmask('.help-popup')">
+            <img class="stats-icon" src="stats.svg" alt="stats" onclick="unmask('.stats-popup')">
+            <img class="settings-icon" src="settings.svg" alt="settings" onclick="unmask('.settings-popup')">
+        </div>
+    </div>
+    <div class="slider">
+        <img class="slider-close-icon" src="close.svg" alt="close" onclick="animateSlider()">
+        <h1>Games</h1>
     </div>
     <div class="main-body">
+        <div class="popup not-in-list">NOT IN WORD LIST</div>
+        <div class="popup win">YOU WON!</div>
+        <div class="popup not-enough-letters">NOT ENOUGH LETTERS</div>
         <div class="grid">
             <div class="rows row-one">
-                <div class="colums row-one-col-one"></div>
-                <div class="colums row-one-col-two"></div>
-                <div class="colums row-one-col-three"></div>
-                <div class="colums row-one-col-four"></div>
-                <div class="colums row-one-col-five"></div>
+                <div class="colums row-one-col-one" style="--i: 0"></div>
+                <div class="colums row-one-col-two" style="--i: 1"></div>
+                <div class="colums row-one-col-three" style="--i: 2"></div>
+                <div class="colums row-one-col-four" style="--i: 3"></div>
+                <div class="colums row-one-col-five" style="--i: 4"></div>
             </div>
             <div class="rows row-two">
-                <div class="colums row-two-col-one"></div>
-                <div class="colums row-two-col-two"></div>
-                <div class="colums row-two-col-three"></div>
-                <div class="colums row-two-col-four"></div>
-                <div class="colums row-two-col-five"></div>
+                <div class="colums row-two-col-one" style="--i: 5"></div>
+                <div class="colums row-two-col-two" style="--i: 6"></div>
+                <div class="colums row-two-col-three" style="--i: 7"></div>
+                <div class="colums row-two-col-four" style="--i: 8"></div>
+                <div class="colums row-two-col-five" style="--i: 9"></div>
             </div>
             <div class="rows row-three">
-                <div class="colums row-three-col-one"></div>
-                <div class="colums row-three-col-two"></div>
-                <div class="colums row-three-col-three"></div>
-                <div class="colums row-three-col-four"></div>
-                <div class="colums row-three-col-five"></div>
+                <div class="colums row-three-col-one" style="--i: 10"></div>
+                <div class="colums row-three-col-two" style="--i: 11"></div>
+                <div class="colums row-three-col-three" style="--i: 12"></div>
+                <div class="colums row-three-col-four" style="--i: 13"></div>
+                <div class="colums row-three-col-five" style="--i: 14"></div>
             </div>
             <div class="rows row-four">
-                <div class="colums row-four-col-one"></div>
-                <div class="colums row-four-col-two"></div>
-                <div class="colums row-four-col-three"></div>
-                <div class="colums row-four-col-four"></div>
-                <div class="colums row-four-col-five"></div>
+                <div class="colums row-four-col-one" style="--i: 15"></div>
+                <div class="colums row-four-col-two" style="--i: 16"></div>
+                <div class="colums row-four-col-three" style="--i: 17"></div>
+                <div class="colums row-four-col-four" style="--i: 18"></div>
+                <div class="colums row-four-col-five" style="--i: 19"></div>
             </div>
             <div class="rows row-five">
-                <div class="colums row-five-col-one"></div>
-                <div class="colums row-five-col-two"></div>
-                <div class="colums row-five-col-three"></div>
-                <div class="colums row-five-col-four"></div>
-                <div class="colums row-five-col-five"></div>
+                <div class="colums row-five-col-one" style="--i: 20"></div>
+                <div class="colums row-five-col-two" style="--i: 21"></div>
+                <div class="colums row-five-col-three" style="--i: 22"></div>
+                <div class="colums row-five-col-four" style="--i: 23"></div>
+                <div class="colums row-five-col-five" style="--i: 24"></div>
             </div>
             <div class="rows row-six">
-                <div class="colums row-six-col-one"></div>
-                <div class="colums row-six-col-two"></div>
-                <div class="colums row-six-col-three"></div>
-                <div class="colums row-six-col-four"></div>
-                <div class="colums row-six-col-five"></div>
+                <div class="colums row-six-col-one" style="--i: 25"></div>
+                <div class="colums row-six-col-two" style="--i: 26"></div>
+                <div class="colums row-six-col-three" style="--i: 27"></div>
+                <div class="colums row-six-col-four" style="--i: 28"></div>
+                <div class="colums row-six-col-five" style="--i: 29"></div>
             </div>
         </div>
     </div>
     <div class="keyboard">
         <div class="keyboard-row key-row-one">
-            <button class="key-button key-q" onclick="clickEntry()">Q</button>
-            <button class="key-button key-w" onclick="clickEntry()">W</button>
-            <button class="key-button key-e" onclick="clickEntry()">E</button>
-            <button class="key-button key-r" onclick="clickEntry()">R</button>
-            <button class="key-button key-t" onclick="clickEntry()">T</button>
-            <button class="key-button key-y" onclick="clickEntry()">Y</button>
-            <button class="key-button key-u" onclick="clickEntry()">U</button>
-            <button class="key-button key-i" onclick="clickEntry()">I</button>
-            <button class="key-button key-o" onclick="clickEntry()">O</button>
-            <button class="key-button key-p" onclick="clickEntry()">P</button>
+            <button class="key-button key-q" onclick="clickEntry(this.innerHTML)">Q</button>
+            <button class="key-button key-w" onclick="clickEntry(this.innerHTML)">W</button>
+            <button class="key-button key-e" onclick="clickEntry(this.innerHTML)">E</button>
+            <button class="key-button key-r" onclick="clickEntry(this.innerHTML)">R</button>
+            <button class="key-button key-t" onclick="clickEntry(this.innerHTML)">T</button>
+            <button class="key-button key-y" onclick="clickEntry(this.innerHTML)">Y</button>
+            <button class="key-button key-u" onclick="clickEntry(this.innerHTML)">U</button>
+            <button class="key-button key-i" onclick="clickEntry(this.innerHTML)">I</button>
+            <button class="key-button key-o" onclick="clickEntry(this.innerHTML)">O</button>
+            <button class="key-button key-p" onclick="clickEntry(this.innerHTML)">P</button>
         </div>
         <div class="keyboard-row key-row-two">
             <div class="black-space"></div>
-            <button class="key-button key-a" onclick="clickEntry()">A</button>
-            <button class="key-button key-s" onclick="clickEntry()">S</button>
-            <button class="key-button key-d" onclick="clickEntry()">D</button>
-            <button class="key-button key-f" onclick="clickEntry()">F</button>
-            <button class="key-button key-g" onclick="clickEntry()">G</button>
-            <button class="key-button key-h" onclick="clickEntry()">H</button>
-            <button class="key-button key-j" onclick="clickEntry()">J</button>
-            <button class="key-button key-k" onclick="clickEntry()">K</button>
-            <button class="key-button key-l" onclick="clickEntry()">L</button>
+            <button class="key-button key-a" onclick="clickEntry(this.innerHTML)">A</button>
+            <button class="key-button key-s" onclick="clickEntry(this.innerHTML)">S</button>
+            <button class="key-button key-d" onclick="clickEntry(this.innerHTML)">D</button>
+            <button class="key-button key-f" onclick="clickEntry(this.innerHTML)">F</button>
+            <button class="key-button key-g" onclick="clickEntry(this.innerHTML)">G</button>
+            <button class="key-button key-h" onclick="clickEntry(this.innerHTML)">H</button>
+            <button class="key-button key-j" onclick="clickEntry(this.innerHTML)">J</button>
+            <button class="key-button key-k" onclick="clickEntry(this.innerHTML)">K</button>
+            <button class="key-button key-l" onclick="clickEntry(this.innerHTML)">L</button>
             <div class="black-space"></div>
         </div>
         <div class="keyboard-row key-row-three">
-            <button class="key-button key-enter" onclick="clickEntry()">ENTER</button>
-            <button class="key-button key-z" onclick="clickEntry()">Z</button>
-            <button class="key-button key-x" onclick="clickEntry()">X</button>
-            <button class="key-button key-c" onclick="clickEntry()">C</button>
-            <button class="key-button key-v" onclick="clickEntry()">V</button>
-            <button class="key-button key-b" onclick="clickEntry()">B</button>
-            <button class="key-button key-n" onclick="clickEntry()">N</button>
-            <button class="key-button key-m" onclick="clickEntry()">M</button>
-            <button class="key-button key-delete" onclick="clickEntry()">
+            <button class="key-button key-enter" onclick="clickEntry(this.innerHTML)">ENTER</button>
+            <button class="key-button key-z" onclick="clickEntry(this.innerHTML)">Z</button>
+            <button class="key-button key-x" onclick="clickEntry(this.innerHTML)">X</button>
+            <button class="key-button key-c" onclick="clickEntry(this.innerHTML)">C</button>
+            <button class="key-button key-v" onclick="clickEntry(this.innerHTML)">V</button>
+            <button class="key-button key-b" onclick="clickEntry(this.innerHTML)">B</button>
+            <button class="key-button key-n" onclick="clickEntry(this.innerHTML)">N</button>
+            <button class="key-button key-m" onclick="clickEntry(this.innerHTML)">M</button>
+            <button class="key-button key-delete" onclick="clickEntry('BACKSPACE')">
                 <span class="material-symbols-outlined">
                     backspace
-                    </span>
+                </span>
             </button>
         </div>
     </div>
+    <button class="reload-button" style="width: 200px; height: 50px;position: relative;left: 44.75%;border-radius: 8px;border: 3px solid var(--darker-gray); background-color: var(--mask-color);color: var(--white);font-size: 20px;margin-top: 50px;display: none;" onclick="location.reload()">Play again</button>
 </body>
 
 </html>
